@@ -5,7 +5,7 @@ navbarMenu("More",
     tabPanel("About",
         fluidRow(
             column(6,
-                "some more text"
+                "Jack made this."
             )
         )
     )
