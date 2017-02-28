@@ -2,7 +2,7 @@ function(input, output, session) {
 
     output$plot <- renderPlot({
         plot(cars, type = input$plotType)
-    }, width = "auto", height = 500)
+    }, width = "auto", height = "auto")
 
     output$summary <- renderPrint({
         summary(cars)
