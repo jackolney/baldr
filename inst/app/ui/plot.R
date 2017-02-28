@@ -5,7 +5,7 @@ tabPanel("Plot",
                 wellPanel(
                     checkboxGroupInput(inputId = "selected_initial", label = "Initial",
                         choices = c("S", "I", "R"),
-                        selected = NULL
+                        selected = c("S", "I", "R")
                     ),
                     checkboxGroupInput(inputId = "selected_parameters", label = "Parameters",
                         choices = c("alpha", "mu"),
