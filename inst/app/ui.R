@@ -1,4 +1,5 @@
 library(shinythemes)
+library(shinyBS)
 
 navbarPage(
 	theme = shinytheme("paper"),
@@ -6,33 +7,28 @@ navbarPage(
 	tabPanel("Plot",
 		sidebarLayout(
 			sidebarPanel(
-			radioButtons(
-				"plotType",
-				"Plot type",
-				c("Scatter"="p", "Line"="l")
-				)
+			radioButtons("plotType", "Plot type", c("Scatter"="p", "Line"="l")),
+			bsButton(inputId = "run", label = "Run", icon = icon("play", class = "fa-lg fa-fw",
+				lib = "font-awesome"), style = "success", size = "default", block = TRUE)
 			),
 			mainPanel(
 				plotOutput("plot")
 			)
 		)
 	),
-	tabPanel("Summary",
-		verbatimTextOutput("summary")
+	tabPanel("Table",
+		DT::dataTableOutput("table")
 			),
 		navbarMenu("More",
-		tabPanel("Table",
-		DT::dataTableOutput("table")
-	),
-	tabPanel("About",
-		fluidRow(
-			column(6,
-			"some more text"
-		),
-		column(3,
-			"hey buddy"
+			tabPanel("Stuff",
+				verbatimTextOutput("summary")
+			),
+			tabPanel("About",
+				fluidRow(
+				column(6,
+					"some more text"
+				)
 			)
 		)
 	)
-)
 )
