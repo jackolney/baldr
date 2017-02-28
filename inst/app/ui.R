@@ -10,8 +10,20 @@ navbarPage(
 				column(width = 4,
 					wellPanel(
 						radioButtons("plotType", "Plot type", c("Scatter"="p", "Line"="l")),
-						bsButton(inputId = "run", label = "Run", icon = icon("play", class = "fa-lg fa-fw",
-							lib = "font-awesome"), style = "success", size = "default", block = TRUE)
+						checkboxGroupInput(inputId = "selected_parameters", label = "Parameters",
+				        	choices = c("alpha", "mu"),
+        					selected = "mu"
+      					),
+      					checkboxGroupInput(inputId = "selected_initial", label = "Initial",
+				        	choices = c("S", "I", "R"),
+        					selected = NULL
+      					),
+						bsButton(inputId = "run", label = "Run", icon = icon("play",
+							class = "fa-lg fa-fw", lib = "font-awesome"), style = "success",
+							size = "default", block = TRUE),
+						bsButton(inputId = "reset", label = "Reset", icon = icon("refresh",
+							class = "fa-lg fa-fw", lib = "font-awesome"), style = "danger",
+							size = "default", block = TRUE)
 					)
 				),
 				column(width = 8,
