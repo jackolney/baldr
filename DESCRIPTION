@@ -9,9 +9,12 @@ Description: This package is designed to be a framework to enable MSc practicals
 Depends:
     R (>= 3.3.1)
 Imports:
+    DT,
     shiny,
     shinyBS,
     shinythemes
+Remotes:
+    richfitz/odin
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
