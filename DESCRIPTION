@@ -12,6 +12,7 @@ Imports:
     DT,
     shiny,
     shinyBS,
+    shinyjs,
     shinythemes
 Remotes:
     richfitz/odin

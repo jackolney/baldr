@@ -1,7 +1,12 @@
 output$plot <- renderHighchart({
+    # triggers
+    input$run
+    input$param_mu
 
-    # run_model() call
+    # build model
     mod <- build_model()
+
+    # run model and adjust for parameter updates
     out <- run_model(model = mod)
 
     # subset if not all checkboxes ticked.
