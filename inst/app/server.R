@@ -1,8 +1,8 @@
 function(input, output, session) {
 
-	output$plot <- renderPlot({
-		plot(cars, type = "p")
-	}, width = "auto", height = "auto")
+	output$plot <- renderHighchart({
+		hchart(cars, "scatter", hcaes(x = speed, y = dist))
+	})
 
 	output$summary <- renderPrint({
 		summary(cars)

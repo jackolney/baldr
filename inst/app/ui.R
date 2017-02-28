@@ -1,5 +1,6 @@
 library(shinythemes)
 library(shinyBS)
+library(highcharter)
 
 navbarPage(
 	theme = shinytheme("paper"),
@@ -26,7 +27,8 @@ navbarPage(
 					)
 				),
 				column(width = 8,
-					plotOutput("plot"),
+					# highchart output
+					highchartOutput("plot",height = "500px"),
 					# Each parameter has its own well?
 					wellPanel(
 						tags$h5("parameter p"),
