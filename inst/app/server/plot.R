@@ -1,7 +1,6 @@
 output$plot <- renderHighchart({
     # triggers
     input$run
-    input$param_mu
 
     # build model
     mod <- build_model()

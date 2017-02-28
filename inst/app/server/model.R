@@ -77,39 +77,7 @@ run_model <- function(model) {
     if (length(replace) > 0L) {
         stopifnot(is.numeric(replace))
         stopifnot(all(names(replace) %in% editable))
-
-        # I want to do this:
-        # model$set_user(... = replace)
-        # but it doesn't work so we go hacky
-
-        # hack (for mu only right now)
-        # model$set_user(mu = replace[["mu"]])
-
-        model$set_user(
-            mu = if ("mu" %in% input$selected_parameters) {
-                input$param_mu
-            } else {
-                model$contents()[["mu"]]
-            },
-
-            beta = if ("beta" %in% input$selected_parameters) {
-                input$param_beta
-            } else {
-                model$contents()[["beta"]]
-            },
-
-            sigma = if ("sigma" %in% input$selected_parameters) {
-                input$param_sigma
-            } else {
-                model$contents()[["sigma"]]
-            },
-
-            delta = if ("delta" %in% input$selected_parameters) {
-                input$param_delta
-            } else {
-                model$contents()[["delta"]]
-            }
-        )
+        model$set_user(user = as.list(replace))
     }
 
     # run the model

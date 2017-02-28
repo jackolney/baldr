@@ -1,13 +1,13 @@
 # global reset
 observeEvent(input$reset, {
     shinyjs::reset("selected_initial")
+    if ("mu" %in% input$selected_parameters)
+        shinyjs::reset("param_mu")
+    if ("beta" %in% input$selected_parameters)
+        shinyjs::reset("param_beta")
+    if ("sigma" %in% input$selected_parameters)
+        shinyjs::reset("param_sigma")
+    if ("delta" %in% input$selected_parameters)
+        shinyjs::reset("param_delta")
     shinyjs::reset("selected_parameters")
-    shinyjs::reset("param_mu")
-})
-
-# parameter reset
-observeEvent(input$reset_mu, {
-    shinyjs::reset("param_mu")
-    shinyjs::reset("min_mu")
-    shinyjs::reset("max_mu")
 })
