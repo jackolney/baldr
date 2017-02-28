@@ -1,0 +1,14 @@
+Package: modelr
+Title: Interactive ODE solver and framework to facilitate the transition from Berkeley Madonna to R
+Version: 0.0.0.9000
+Authors@R: person("Jack", "Olney", email = "jack.olney11@imperial.ac.uk", role = c("aut", "cre"))
+Description: This package is designed to be a framework to enable MSc practicals written in Berkeley
+Madonna (BM) to be easily moved into R. The package will contain a basic layout similar to BM but
+with some interactive enhancements.
+Depends:
+    R (>= 3.3.1)
+Imports:
+    shinythemes
+License: MIT
+Encoding: UTF-8
+LazyData: true

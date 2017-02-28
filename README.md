@@ -1,8 +1,9 @@
 # modelr
 Epidemiological modelling in R
 
-The purpose of this package is a base for the development of an open-source framework for 
-running ODE-based mathematical models of infectious diseases in R
+[![Travis-CI Build Status](https://travis-ci.org/jackolney/modelr.svg?branch=master)](https://travis-ci.org/jackolney/modelr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jackolney/modelr?branch=master&svg=true)](https://ci.appveyor.com/project/jackolney/modelr)
+
+The purpose of this package is a base for the development of an open-source framework for running ODE-based mathematical models of infectious diseases in R
 
 I will make heavy use of the shiny package and wrap this in an R-package
 
