@@ -37,29 +37,32 @@ check_parameters <- function(model) {
     # empty changes vector
     changes <- vector()
 
+    # require the following
+    # req(input$param_mu, input$param_mu)
+
     # mu
-    if ("mu" %in% input$selected_parameters) {
+    if ("mu" %in% input$selected_parameters & !is.null(input$param_mu)) {
         if (input$param_mu != base[["mu"]]) {
             changes <- c(changes, mu = input$param_mu)
         }
     }
 
     # beta
-    if ("beta" %in% input$selected_parameters) {
+    if ("beta" %in% input$selected_parameters & !is.null(input$param_beta)) {
         if (input$param_beta != base[["beta"]]) {
             changes <- c(changes, beta = input$param_beta)
         }
     }
 
     # sigma
-    if ("sigma" %in% input$selected_parameters) {
+    if ("sigma" %in% input$selected_parameters & !is.null(input$param_sigma)) {
         if (input$param_sigma != base[["sigma"]]) {
             changes <- c(changes, sigma = input$param_sigma)
         }
     }
 
     # delta
-    if ("delta" %in% input$selected_parameters) {
+    if ("delta" %in% input$selected_parameters & !is.null(input$param_delta)) {
         if (input$param_delta != base[["delta"]]) {
             changes <- c(changes, delta = input$param_delta)
         }
@@ -81,7 +84,7 @@ run_model <- function(model) {
     }
 
     # run the model
-    tt <- seq(0, 100, length.out = 101)
+    tt <- seq(0, 100, by = 0.1)
     y <- model$run(tt)
 
     # assemble output

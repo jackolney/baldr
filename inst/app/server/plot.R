@@ -6,7 +6,7 @@ output$plot <- renderHighchart({
     mod <- build_model()
 
     # run model and adjust for parameter updates
-    out <- run_model(model = mod)
+    out <- isolate(run_model(model = mod))
 
     # subset if not all checkboxes ticked.
     out <- out[out$variable %in% input$selected_initial,]
