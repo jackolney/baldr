@@ -8,4 +8,6 @@ observeEvent(input$reset, {
 # parameter reset
 observeEvent(input$reset_mu, {
     shinyjs::reset("param_mu")
+    shinyjs::reset("min_mu")
+    shinyjs::reset("max_mu")
 })

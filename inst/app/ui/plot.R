@@ -31,10 +31,10 @@ tabPanel("Plot",
                     sliderInput(inputId = "param_mu", label = "", min = 0, max = 0.1, value = 0.013,
                         step = 0.001, round = FALSE, ticks = TRUE, width = NULL, sep = ","),
                     tags$div(style = "display:inline-block",
-                        numericInput(inputId = "min", label = "min", value = 0, width = "80%")
+                        numericInput(inputId = "min_mu", label = "min", value = 0, width = "80%")
                     ),
                     tags$div(style = "display:inline-block",
-                        numericInput(inputId = "max", label = "max", value = 1, width = "80%")
+                        numericInput(inputId = "max_mu", label = "max", value = 0.1, width = "80%")
                     ),
                     tags$div(style = "display:inline-block",
                         bsButton(inputId = "reset_mu", label = "Reset",
