@@ -7,6 +7,17 @@ The purpose of this package is a base for the development of an open-source fram
 
 I will make heavy use of the shiny package and wrap this in an R-package
 
+## Installation
+
+Two commands and you are good to go.
+
+```R
+devtools::install_github("jackolney/modelr")
+modelr::run()
+```
+
+Additionally, there will be a hosted version of this on [shinyapps](http://shinyapps.io/).
+
 ## Roadmap
 
 1. Test build of layout using shiny to generate a figure (basic layout of code on left, figure on right, parameter sliders underneath)
