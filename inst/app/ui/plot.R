@@ -25,12 +25,18 @@ tabPanel("Plot",
                         choices = c("mu", "beta", "sigma", "delta"),
                         selected = "mu"
                     ),
-                    bsButton(inputId = "run", label = "Run", icon = icon("play",
-                        class = "fa-lg fa-fw", lib = "font-awesome"), style = "success",
-                        size = "default", block = TRUE),
-                    bsButton(inputId = "reset", label = "Reset", icon = icon("refresh",
-                        class = "fa-lg fa-fw", lib = "font-awesome"), style = "danger",
-                        size = "default", block = TRUE)
+                    fluidRow(
+                        column(width = 6,
+                            bsButton(inputId = "run", label = "Run", icon = icon("play",
+                                class = "fa-lg fa-fw", lib = "font-awesome"), style = "success",
+                                size = "default", block = TRUE)
+                        ),
+                        column(width = 6,
+                            bsButton(inputId = "reset", label = "Reset", icon = icon("refresh",
+                                class = "fa-lg fa-fw", lib = "font-awesome"), style = "danger",
+                                size = "default", block = TRUE)
+                        )
+                    )
                 )
             ),
             # RHS Column
