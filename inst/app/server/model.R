@@ -84,7 +84,7 @@ run_model <- function(model) {
     }
 
     # run the model
-    tt <- seq(0, 100, by = 0.1)
+    tt <- seq(from = input$time_from, to = input$time_to, by = input$time_by)
     y <- model$run(tt)
 
     # assemble output

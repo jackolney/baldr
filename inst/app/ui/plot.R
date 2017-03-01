@@ -5,6 +5,18 @@ tabPanel("Plot",
             # LHS Column
             column(width = 4,
                 wellPanel(
+                    tags$div(style = "display:inline-block; width: 32.5%;",
+                        numericInput(inputId = "time_from", label = "Start Time",
+                            value = 0, min = 0, step = 1, width = "80%")
+                    ),
+                    tags$div(style = "display:inline-block; width: 32.5%;",
+                        numericInput(inputId = "time_to", label = "Stop Time",
+                            value = 50, min = 0, step = 1, width = "80%")
+                    ),
+                    tags$div(style = "display:inline-block; width: 32.5%;",
+                        numericInput(inputId = "time_by", label = "Time Step",
+                            value = 0.1, min = 1e-2, step = 1e-2, width = "80%")
+                    ),
                     checkboxGroupInput(inputId = "selected_initial", label = "Initial",
                         choices = c("S", "I", "R"),
                         selected = c("S", "I", "R")
