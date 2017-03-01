@@ -4,13 +4,9 @@ tabPanel("Plot",
         fluidRow(
             # LHS Column
             column(width = 4,
-                # shinyBS collapsible panel
-                bsCollapse(id = "sidePanel", open = NULL,
-                    bsCollapsePanel(title = "Model",
-                        "This is a panel with just text, but will hold all the Ace shit...",
-                        style = "default"
-                    )
-                ),
+                # AceEditor
+                aceEditor(outputId = "live_code", mode = "r", theme = "textmate", height = "488px",
+                    value = paste(readLines("user-model.R"), collapse = "\n")),
                 wellPanel(
                     tags$div(style = "display:inline-block; width: 32.5%;",
                         numericInput(inputId = "time_from", label = "Start Time",
@@ -32,12 +28,18 @@ tabPanel("Plot",
                         choices = c("mu", "beta", "sigma", "delta"),
                         selected = "mu"
                     ),
-                    bsButton(inputId = "run", label = "Run", icon = icon("play",
-                        class = "fa-lg fa-fw", lib = "font-awesome"), style = "success",
-                        size = "default", block = TRUE),
-                    bsButton(inputId = "reset", label = "Reset", icon = icon("refresh",
-                        class = "fa-lg fa-fw", lib = "font-awesome"), style = "danger",
-                        size = "default", block = TRUE)
+                    fluidRow(
+                        column(width = 6,
+                            bsButton(inputId = "run", label = "Run", icon = icon("play",
+                                class = "fa-lg fa-fw", lib = "font-awesome"), style = "success",
+                                size = "default", block = TRUE)
+                        ),
+                        column(width = 6,
+                            bsButton(inputId = "reset", label = "Reset", icon = icon("refresh",
+                                class = "fa-lg fa-fw", lib = "font-awesome"), style = "danger",
+                                size = "default", block = TRUE)
+                        )
+                    )
                 )
             ),
             # RHS Column
