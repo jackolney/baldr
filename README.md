@@ -16,7 +16,7 @@ devtools::install_github("jackolney/modelr")
 modelr::run()
 ```
 
-Additionally, there will be a hosted version of this on [shinyapps](http://shinyapps.io/).
+Additionally, a live version of the tool is available here: [jackolney.shinyapps.io/modelr](https://jackolney.shinyapps.io/modelr/).
 
 ## Roadmap
 
