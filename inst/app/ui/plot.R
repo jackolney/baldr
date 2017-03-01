@@ -4,6 +4,13 @@ tabPanel("Plot",
         fluidRow(
             # LHS Column
             column(width = 4,
+                # shinyBS collapsible panel
+                bsCollapse(id = "sidePanel", open = NULL,
+                    bsCollapsePanel(title = "Model",
+                        "This is a panel with just text, but will hold all the Ace shit...",
+                        style = "default"
+                    )
+                ),
                 wellPanel(
                     tags$div(style = "display:inline-block; width: 32.5%;",
                         numericInput(inputId = "time_from", label = "Start Time",
