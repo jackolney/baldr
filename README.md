@@ -18,6 +18,11 @@ modelr::run()
 
 Additionally, a live version of the tool is available here: [jackolney.shinyapps.io/modelr](https://jackolney.shinyapps.io/modelr/)
 
+## Manual
+
+A walkthrough and detailed user-guide is available here: [modelr/manual](https://jackolney.github.io/modelr/manual)
+
+
 ## Roadmap
 
 1. Test build of layout using shiny to generate a figure (basic layout of code on left, figure on right, parameter sliders underneath)
