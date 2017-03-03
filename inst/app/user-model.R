@@ -17,5 +17,5 @@ beta <- user(24)
 sigma <- user(12)
 delta <- user(0.2)
 
-# bit confused about this
+# Name of model
 config(base) <- 'sir'

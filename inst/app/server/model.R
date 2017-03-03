@@ -5,6 +5,12 @@ build_model <- function(code) {
 
     # build the model
     model <- sir()
+
+    # set initial and parameter values
+    vals$initial <- setdiff(model$names, "t")
+    vals$params <- setdiff(names(formals(sir)), c("user", "use_dde"))
+    vals$contents <- model$contents()
+
     model
 }
 
