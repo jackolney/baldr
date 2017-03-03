@@ -3,7 +3,8 @@ output$plot <- renderHighchart({
     input$run
 
     # build model
-    mod <- build_model()
+    # code = live model from Ace Editor
+    mod <- isolate(build_model(code = input$live_code))
 
     # run model and adjust for parameter updates
     out <- isolate(run_model(model = mod))

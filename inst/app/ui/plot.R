@@ -46,7 +46,7 @@ tabPanel("Plot",
             column(width = 8,
 
                 # highchart output
-                highchartOutput("plot",height = "500px"),
+                highchartOutput("plot", height = "500px"),
 
                 # Each parameter has its own well?
                 uiOutput(outputId = "ui_mu",    inline = FALSE),
