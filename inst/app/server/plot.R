@@ -12,6 +12,9 @@ output$plot <- renderHighchart({
     # subset if not all checkboxes ticked.
     out <- out[out$variable %in% input$selected_initial,]
 
+    # don't proceed if the out data.frame is empty
+    if (dim(out)[1] == 0) return()
+
     # highcharter thousandsSep
     hcopts <- getOption("highcharter.lang")
     hcopts$thousandsSep <- ","
