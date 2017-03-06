@@ -21,16 +21,8 @@ output$ui_params <- renderUI({
                     )
 })
 
-
-# Dynamic Sliders
-output$ui_sliders <- renderUI({
-
-    # vals$params <- c("mu", "beta", "sigma", "delta")
-    vals$params
-
-    # dependent on the selections here too
-    params <- vals$params[vals$params %in% input$selected_parameters]
-
+# slider UI ShinyTag function
+create_sliders <- function(params) {
     slider_ui <- list()
     for (i in 1:length(params)) {
         slider_ui[[i]] <- wellPanel(
@@ -63,7 +55,160 @@ output$ui_sliders <- renderUI({
 
     # tagList allows you to take this list and return a whole shinyTag object
     tagList(slider_ui)
+}
+
+# reactiveEvent to build UI
+slider_ui_generator <- eventReactive(input$selected_parameters, {
+
+    # vals$params <- c("mu", "beta", "sigma", "delta")
+    vals$params
+
+    # dependent on the selections here too
+    params <- vals$params[vals$params %in% input$selected_parameters]
+
+    # run create_slider shinyTag function
+    sliders <- create_sliders(params)
+
+    # Observation Loop
+    # This is nifty.
+    for (i in 1:length(params)) {
+        local({
+
+            # define parameters
+            param_name <- paste0("param_", params[i])
+
+            # observeEvent minimums
+            input_name_min <- paste0("min_", params[i])
+
+            observeEvent(input[[input_name_min]], {
+                print("min trigger")
+                    updateSliderInput(session,
+                        inputId = param_name,
+                        min = input[[input_name_min]])
+            })
+
+            # observeEvent maximums
+            input_name_max <- paste0("max_", params[i])
+
+            observeEvent(input[[input_name_max]], {
+                print("max trigger")
+                    updateSliderInput(session,
+                        inputId = param_name,
+                        max = input[[input_name_max]])
+            })
+
+        })
+    }
+
+    div(id = "ui_sliders", sliders)
 })
+
+# Call to renderUI
+output$ui_sliders <- renderUI({
+    slider_ui_generator()
+})
+
+
+
+
+# contribution_ui_generator <- eventReactive(input$add_more, {
+#   entries_to_add <- input$number_of_projects
+#   contribution_fields <- build_fields(input$number_of_projects)
+
+#   for(entry in 1:entries_to_add) {
+#     local({
+#       local_entry <- entry
+#       project_name_field <- paste0("project_field", local_entry)
+
+#       observeEvent(input[[project_name_field]], {
+#         local_project_field_name <- project_name_field
+#         subproject_field_name <- paste0("subproject_field", local_entry)
+
+#         selected_project <- input[[local_project_field_name]]
+
+#         list_of_subprojects <- subprojects %>%
+#           filter(projectID == selected_project) %>%
+#           .[['name']]
+
+#         updateSelectInput(session, subproject_field_name, choices = list_of_subprojects)
+#       })
+
+#     })
+#   }
+
+#   div(id = "list_of_contributions", contribution_fields)
+# })
+
+# # Dynamic Sliders
+# output$ui_sliders <- renderUI({
+
+#     # vals$params <- c("mu", "beta", "sigma", "delta")
+#     vals$params
+
+#     # dependent on the selections here too
+#     params <- vals$params[vals$params %in% input$selected_parameters]
+
+#     slider_ui <- list()
+#     for (i in 1:length(params)) {
+#         slider_ui[[i]] <- wellPanel(
+#                             tags$h5(params[i]),
+#                             sliderInput(inputId = paste0("param_", params[i]),
+#                                 label = "",
+#                                 min = 0,
+#                                 max = vals$contents[[params[i]]] * 2,
+#                                 value = vals$contents[[params[i]]],
+#                                 step = 0.001, round = FALSE, ticks = TRUE, width = NULL, sep = ","),
+#                             tags$div(style = "display:inline-block",
+#                                 numericInput(inputId = paste0("min_", params[i]),
+#                                     label = "min",
+#                                     value = 0,
+#                                     width = "80%")
+#                             ),
+#                             tags$div(style = "display:inline-block",
+#                                 numericInput(inputId = paste0("max_", params[i]),
+#                                     label = "max",
+#                                     value = vals$contents[[params[i]]] * 2,
+#                                     width = "80%")
+#                             ),
+#                             tags$div(style = "display:inline-block",
+#                                 bsButton(inputId = paste0("reset_", params[i]), label = "Reset",
+#                                     icon = icon("refresh", class = "fa-lg fa-fw", lib = "font-awesome"),
+#                                     style = "danger", size = "small", block = FALSE)
+#                             )
+#                         )
+#     }
+
+#     # tagList allows you to take this list and return a whole shinyTag object
+#     tagList(slider_ui)
+# })
+
+
+# the renderUI will CREATE the elements I want.
+
+# I just need to interact with them subsequently...
+
+# try this:
+
+# observeEvent(input$selected_parameters, {
+#     # vals$params <- c("mu", "beta", "sigma", "delta")
+#     vals$params
+
+#     # dependent on the selections here too
+#     params <- vals$params[vals$params %in% input$selected_parameters]
+
+    # Try a for loop for observeEvent objects
+    # If I have trouble a local({}) might be worth trying
+    # for (i in 1:length(params)) {
+    #     print(paste0("input$min_", params[i]))
+    #     observeEvent(get(paste0("input$min_", params[i])), {
+    #         updateSliderInput(session, inputId = paste0("param_", params[i]),
+    #             min = get(paste0("input$min_", params[i])))
+    #     })
+    # }
+
+# })
+
+
 
 # TO DO
 
@@ -72,6 +217,8 @@ output$ui_sliders <- renderUI({
 # also need to define DYNAMICALLY:
 # slider updates (MAX / MIN)
 # RESET buttons
+
+## NEED the below objects to be live in server.R
 
 # observe max / min adjustments
 # observeEvent(input$min_mu, {
@@ -90,6 +237,7 @@ output$ui_sliders <- renderUI({
 # })
 
 
+## dev area
 
 # reactive({
 #     # dependent on the selections here too
@@ -106,3 +254,5 @@ output$ui_sliders <- renderUI({
 
 
 # eval(paste0("input$min_", params[i]))
+
+
