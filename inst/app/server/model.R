@@ -10,6 +10,7 @@ build_model <- function(code) {
     vals$initial <- setdiff(model$names, "t")
     vals$params <- setdiff(names(formals(sir)), c("user", "use_dde"))
     vals$contents <- model$contents()
+    vals$default <- model$contents()
 
     model
 }

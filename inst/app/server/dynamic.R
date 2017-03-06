@@ -22,7 +22,7 @@ output$ui_params <- renderUI({
 })
 
 # slider UI ShinyTag function
-create_sliders <- function(params) {
+create_sliders <- function(params, vals) {
     slider_ui <- list()
     for (i in 1:length(params)) {
         slider_ui[[i]] <- wellPanel(
@@ -67,7 +67,7 @@ slider_ui_generator <- eventReactive(input$selected_parameters, {
     params <- vals$params[vals$params %in% input$selected_parameters]
 
     # run create_slider shinyTag function
-    sliders <- create_sliders(params)
+    sliders <- create_sliders(params, vals)
 
     # Observation Loop
     # This is nifty.
@@ -76,6 +76,12 @@ slider_ui_generator <- eventReactive(input$selected_parameters, {
 
             # define parameters
             param_name <- paste0("param_", params[i])
+
+            # observeEvent input
+            param <- params[i]
+            observeEvent(input[[param_name]], {
+                vals$contents[[param]] <- input[[param_name]]
+            })
 
             # observeEvent minimums
             input_name_min <- paste0("min_", params[i])
@@ -96,9 +102,22 @@ slider_ui_generator <- eventReactive(input$selected_parameters, {
             # observeEvent reset
             reset_name <- paste0("reset_", params[i])
             observeEvent(input[[reset_name]], {
-                shinyjs::reset(param_name)
-                shinyjs::reset(input_name_min)
-                shinyjs::reset(input_name_max)
+                # overload contents with default values
+                vals$contents[[param]] <- vals$default[[param]]
+                # update parameter slider
+                updateSliderInput(session,
+                    inputId = param_name,
+                    value = vals$default[[param]],
+                    min = 0,
+                    max = vals$default[[param]] * 2)
+                # update parameter minimum
+                updateNumericInput(session,
+                    inputId = paste0("min_", param),
+                    value = 0)
+                # update parameter maximum
+                updateNumericInput(session,
+                    inputId = paste0("max_", param),
+                    value = vals$default[[param]] * 2)
             })
 
         })
@@ -111,3 +130,13 @@ slider_ui_generator <- eventReactive(input$selected_parameters, {
 output$ui_sliders <- renderUI({
     slider_ui_generator()
 })
+
+
+# what if, observe change in slider ... vals$params value gets updated.
+#
+
+# vals$params = parameter names
+# vals$contents = parameter values
+
+# the reason that sliders are reset is becauce the vals$contents is CHECKED!
+# BUT THIS COULD JUST BE UPDATED!!!
