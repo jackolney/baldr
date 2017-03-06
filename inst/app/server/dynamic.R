@@ -17,7 +17,7 @@ output$ui_initial <- renderUI({
 output$ui_params <- renderUI({
     checkboxGroupInput(inputId = "selected_parameters", label = "Parameters",
                        choices = vals$params,
-                       selected = "mu"
+                       selected = NULL
                     )
 })
 
