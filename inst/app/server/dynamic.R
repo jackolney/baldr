@@ -43,11 +43,15 @@ output$ui_sliders <- renderUI({
                                 step = 0.001, round = FALSE, ticks = TRUE, width = NULL, sep = ","),
                             tags$div(style = "display:inline-block",
                                 numericInput(inputId = paste0("min_", params[i]),
-                                    label = "min", value = 0, width = "80%")
+                                    label = "min",
+                                    value = 0,
+                                    width = "80%")
                             ),
                             tags$div(style = "display:inline-block",
                                 numericInput(inputId = paste0("max_", params[i]),
-                                    label = "max", value = 0.1, width = "80%")
+                                    label = "max",
+                                    value = vals$contents[[params[i]]] * 2,
+                                    width = "80%")
                             ),
                             tags$div(style = "display:inline-block",
                                 bsButton(inputId = paste0("reset_", params[i]), label = "Reset",
