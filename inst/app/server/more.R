@@ -1,3 +1,3 @@
-output$summary <- renderPrint({
+output$diagnostics <- renderPrint({
     devtools::session_info()
 })

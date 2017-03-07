@@ -1,12 +1,9 @@
 navbarMenu("More",
-    tabPanel("Stuff",
-        verbatimTextOutput("summary")
+    tabPanel("Diagnostics",
+        verbatimTextOutput(outputId = "diagnostics")
     ),
     tabPanel("About",
-        fluidRow(
-            column(6,
-                "Jack made this."
-            )
-        )
+        "Jack made this.",
+        a(href = "https://jackolney.github.io/modelr/manual", "modelr manual", target = "_blank")
     )
 )
