@@ -24,5 +24,12 @@ output$plot <- renderHighchart({
     hchart(object = out, type = "line", hcaes(x = t, y = value, group = variable)) %>%
         hc_tooltip(crosshairs = TRUE, shared = TRUE, borderWidth = 2, valueDecimals = 2) %>%
         hc_exporting(enabled = TRUE) %>%
-        hc_chart(zoomType = "x")
+        hc_chart(zoomType = "x") %>%
+        hc_xAxis(title = list(text = "time"),
+                 labels = list(style = list(fontSize = "12px"))
+                ) %>%
+        hc_yAxis(title = list(text = "value"),
+                labels = list(style = list(fontSize = "12px"))
+                ) %>%
+        hc_legend(itemStyle = list(fontSize = "15px"))
 })
