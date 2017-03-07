@@ -1,4 +1,4 @@
-# Global Reset
+# global reset
 observeEvent(input$reset, {
     vals$contents <- vals$default
     shinyjs::reset("selected_parameters")

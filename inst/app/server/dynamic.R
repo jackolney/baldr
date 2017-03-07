@@ -1,9 +1,4 @@
-# dynamic UI
-# initial values
-# parameters
-# eventually piped to plot function
-
-# We actually can hopefully just pipe back the values here
+# dynamic UI creation
 
 vals <- reactiveValues()
 
@@ -130,13 +125,3 @@ slider_ui_generator <- eventReactive(input$selected_parameters, {
 output$ui_sliders <- renderUI({
     slider_ui_generator()
 })
-
-
-# what if, observe change in slider ... vals$params value gets updated.
-#
-
-# vals$params = parameter names
-# vals$contents = parameter values
-
-# the reason that sliders are reset is becauce the vals$contents is CHECKED!
-# BUT THIS COULD JUST BE UPDATED!!!
