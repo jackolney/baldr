@@ -28,10 +28,10 @@ hosted version of the package.
 ## Syntax
 
 When entering a model into `modelr` please follow the syntax specified by the [`odin`](https://github.com/richfitz/odin)
-package written by [Rich FitzJohn](https://richfitz.github.io/). Rich has put together a very detailed [vignette](https://richfitz.github.io/odin/vignettes/odin.html)
+package written by [Rich FitzJohn](https://richfitz.github.io/). Rich has put together a very detailed [**vignette**](https://richfitz.github.io/odin/vignettes/odin.html)
 on how to use odin.
 
-#### [odin vignette](https://richfitz.github.io/odin/vignettes/odin.html)
+Below is a brief table comparing expressions in the three languages:
 
 | Expression | Berkeley Madonna | Odin | R |
 |------------|------------------|------|---|
@@ -39,43 +39,123 @@ on how to use odin.
 | Initial value of 'S' | `init S` | `initial(S)` | `deSolve::ode(y = initial)` |
 | Parameter 'mu' | `mu = 1/75` | `mu <- user(1/75)` | `deSolve::ode(parms = c(mu = 1/75)` |
 
+The code snippets below detail an [SIR](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model) model written in all three syntaxes. These pieces of code form entire programs, and can be copied into the relevant application to generate results. The purpose being to help users understand how the concepts translate across the three languages. For simplicity I have written exactly the same model in each language.
+
+### Berkeley Madonna
+
+```shell
+{Model Setup}
+METHOD RK4 ;integration method
+STARTTIME = 0 ;model start time
+STOPTIME = 100 ;model stop time
+DT = 0.1 ;time step
+
+{Derivatives}
+d/dt(S) <- Births - mu * S - beta * S * I / N + delta * R
+d/dt(I) <- beta * S * I / N - (mu + sigma) * I
+d/dt(R) <- sigma * I - mu * R - delta * R
+
+{Initial conditions}
+init S = 1e7 - 1
+init I = 1
+init R = 0
+
+{Parameters}
+Births = 1e7 / 72
+mu = 1 / 72
+beta = 24
+sigma = 12
+delta = 0.2
+
+{Clicking 'RUN' will compile and run the model automatically}
+```
+
+### Odin
+
 ```R
-# This code snippet will compare Berkeley Madonna / Odin / R
+# Check for packages
+if (!require("odin")) devtools::install_github("richfitz/odin")
+if (!require("reshape2")) install.packages("reshape2")
 
-## Derivative of 'S'
-# BM
-d/dt(S)
+# setup model
+gen <- odin::odin({
+    # Derivatives
+    deriv(S) <- Births - mu * S - beta * S * I / N + delta * R
+    deriv(I) <- beta * S * I / N - (mu + sigma) * I
+    deriv(R) <- sigma * I - mu * R - delta * R
 
-# Odin
-deriv(S)
+    # Initial conditions
+    initial(S) <- 1e7 - 1
+    initial(I) <- 1
+    initial(R) <- 0
 
-# R
-dS
+    # Parameters
+    Births <- 1e7 / 72
+    mu <- user(1 / 7)
+    beta <- user(24)
+    sigma <- user(12)
+    delta <- user(0.2)
 
-## Initial value of 'S'
-# BM
-init S
+    # Name of model
+    config(base) <- 'sir'
+})
 
-# Odin
-initial(S)
+# compile model
+model <- gen()
 
-# R
-deSolve::ode(y = initial)
+# define start, stop and time step
+tt <- seq(from = 0, to = 100, by = 0.1)
 
-## Parameter 'mu'
-# BM
-mu = 1/75
+# run the model
+y <- model$run(tt)
 
-# Odin
-mu <- user(1/75)
-
-# R
-deSolve::ode(parms = )
-
+# assemble output
+out <- reshape2::melt(data = as.data.frame(y), id.vars = "t")
+out
 
 ```
 
-A full example vignette detailing an [SIR](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model) model written in all three syntaxes will soon be available here.
+### R
+
+```R
+# Check for packages
+if (!require("deSolve")) install.packages("deSolve")
+
+model <- function(t, y, parms) {
+
+    # Derivatives
+    dS <- y[["Births"]] - parms[["mu"]] * y[["S"]] - parms[["beta"]] * y[["S"]] * y[["I"]] / y[["N"]] + parms[["delta"]] * y[["R"]]
+    dI <- parms[["beta"]] * y[["S"]] * y[["I"]] / y[["N"]] - (parms[["mu"]] + parms[["sigma"]]) * y[["I"]]
+    dR <- parms[["sigma"]] * y[["I"]] - parms[["mu"]] * y[["R"]] - parms[["delta"]] * y[["R"]]
+
+    # reconstruct output
+    out <- list(c(dS, dI, dR))
+    out
+}
+
+# Initial conditions
+initial <- c(
+    S = 1e7 - 1,
+    I = 1,
+    R = 0
+)
+
+# Parameters
+parameters <- c(
+    Births = 1e7 / 72,
+    mu = 1 / 72,
+    beta = 24,
+    sigma = 12,
+    delta = 0.2
+)
+
+# define start, stop and time step
+tt <- seq(from = 0, to = 100, by = 0.1)
+
+out <- deSolve::ode(times = tt, y = initial, func = model, parms = parameters)
+out
+
+```
 
 ## Tools
 
