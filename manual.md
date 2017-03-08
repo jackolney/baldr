@@ -26,11 +26,11 @@ When entering a model into `modelr` please follow the syntax specified by the [`
 
 Below is a brief table comparing expressions in the three languages:
 
-| Expression | Berkeley Madonna | Odin | R |
-|------------|------------------|------|---|
-| Derivative of 'S' | `d/dt(S)` | `deriv(S)` | `dS` |
-| Initial value of 'S' | `init S` | `initial(S)` | `deSolve::ode(y = initial)` |
-| Parameter 'mu' | `mu = 1/75` | `mu <- user(1/75)` | `deSolve::ode(parms = c(mu = 1/75)` |
+Expression           | Berkeley Madonna | Odin               | R
+-------------------- | ---------------- | ------------------ | -----------------------------------
+Derivative of 'S'    | `d/dt(S)`        | `deriv(S)`         | `dS`
+Initial value of 'S' | `init S`         | `initial(S)`       | `deSolve::ode(y = initial)`
+Parameter 'mu'       | `mu = 1/75`      | `mu <- user(1/75)` | `deSolve::ode(parms = c(mu = 1/75)`
 
 The code snippets below detail an [SIR](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model) model written in all three syntaxes. These pieces of code form entire programs, and can be copied into the relevant application to generate results. The purpose being to help users understand how the concepts translate across the three languages. For simplicity I have written exactly the same model in each language.
 
