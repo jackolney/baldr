@@ -25,9 +25,9 @@ A walkthrough and detailed user-guide is available here: [modelr/manual](https:/
 
 ## Support
 
-Platform        | Resource  | Status
-:-------------: | :-------: | :----:
-_macOS & Linux_ | Travis CI | [![Travis-CI Build Status](https://travis-ci.org/jackolney/modelr.svg?branch=master)](https://travis-ci.org/jackolney/modelr)
-_Windows_       | Appveyor  | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jackolney/modelr?branch=master&svg=true)](https://ci.appveyor.com/project/jackolney/modelr)
+Platform             | Resource  | Status
+:------------------: | :-------: | :----:
+_macOS, iOS & Linux_ | Travis CI | [![Travis-CI Build Status](https://travis-ci.org/jackolney/modelr.svg?branch=master)](https://travis-ci.org/jackolney/modelr)
+_Windows_            | Appveyor  | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jackolney/modelr?branch=master&svg=true)](https://ci.appveyor.com/project/jackolney/modelr)
 
 For additional support please contact [Jack Olney](mailto:jack.olney11@imperial.ac.uk)
