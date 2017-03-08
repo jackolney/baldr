@@ -1,17 +1,12 @@
 # manual :books:
 
-This is a walkthrough and manual for the use of the `modelr` package for epidemiological modelling
-in R
+This is a walkthrough and manual for the use of the `modelr` package for epidemiological modelling in R
 
 ## Introduction
-hasdoaihdas;
 
-This package is designed to ease the transition of students from [Berkeley Madonna](https://www.berkeleymadonna.com/),
-in which they were introduced to solving Ordinary Differential Equations (ODE's), to the statistical
-computing language, [R](https://www.r-project.org/).
+This package is designed to ease the transition of students from [Berkeley Madonna](https://www.berkeleymadonna.com/), in which they were introduced to solving [Ordinary Differential Equations](https://en.wikipedia.org/wiki/Ordinary_differential_equation) (ODE's), to the statistical computing language, [R](https://www.r-project.org/).
 
-See the [README](https://jackolney.github.io/modelr/) for details on installation and launching a
-hosted version of the package.
+See the [README](https://jackolney.github.io/modelr/) for details on installation and launching a hosted version of the package.
 
 ## Interface
 
@@ -27,9 +22,7 @@ hosted version of the package.
 
 ## Syntax
 
-When entering a model into `modelr` please follow the syntax specified by the [`odin`](https://github.com/richfitz/odin)
-package written by [Rich FitzJohn](https://richfitz.github.io/). Rich has put together a very detailed [**vignette**](https://richfitz.github.io/odin/vignettes/odin.html)
-on how to use odin.
+When entering a model into `modelr` please follow the syntax specified by the [`odin`](https://github.com/richfitz/odin) package written by [Rich FitzJohn](https://richfitz.github.io/). Rich has put together a very detailed [**vignette**](https://richfitz.github.io/odin/vignettes/odin.html) on how to use odin.
 
 Below is a brief table comparing expressions in the three languages:
 
