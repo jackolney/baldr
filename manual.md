@@ -4,6 +4,7 @@ This is a walkthrough and manual for the use of the `modelr` package for epidemi
 in R
 
 ## Introduction
+hasdoaihdas;
 
 This package is designed to ease the transition of students from [Berkeley Madonna](https://www.berkeleymadonna.com/),
 in which they were introduced to solving Ordinary Differential Equations (ODE's), to the statistical
@@ -24,7 +25,6 @@ hosted version of the package.
 - Clicking the Global Reset will reset all parameters and bring the model back to its initial state
 - Refreshing the page will produce the same effect
 
-
 ## Syntax
 
 When entering a model into `modelr` please follow the syntax specified by the [`odin`](https://github.com/richfitz/odin)
@@ -38,6 +38,42 @@ on how to use odin.
 | Derivative of 'S' | `d/dt(S)` | `deriv(S)` | `dS` |
 | Initial value of 'S' | `init S` | `initial(S)` | `deSolve::ode(y = initial)` |
 | Parameter 'mu' | `mu = 1/75` | `mu <- user(1/75)` | `deSolve::ode(parms = c(mu = 1/75)` |
+
+```R
+# This code snippet will compare Berkeley Madonna / Odin / R
+
+## Derivative of 'S'
+# BM
+d/dt(S)
+
+# Odin
+deriv(S)
+
+# R
+dS
+
+## Initial value of 'S'
+# BM
+init S
+
+# Odin
+initial(S)
+
+# R
+deSolve::ode(y = initial)
+
+## Parameter 'mu'
+# BM
+mu = 1/75
+
+# Odin
+mu <- user(1/75)
+
+# R
+deSolve::ode(parms = )
+
+
+```
 
 A full example vignette detailing an [SIR](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model) model written in all three syntaxes will soon be available here.
 
