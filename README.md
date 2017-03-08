@@ -19,7 +19,7 @@ modelr::run()
 
 Additionally, a live version of the tool is available here: [jackolney.shinyapps.io/modelr](https://jackolney.shinyapps.io/modelr/)
 
-![screenshot](https://cloud.githubusercontent.com/assets/4134882/23662523/cd13c33c-0347-11e7-9a36-67454bba2f0c.png)
+![screenshot](https://cloud.githubusercontent.com/assets/4134882/23711620/46b7d37e-0418-11e7-8100-495649ed05e1.jpg)
 
 ## Manual
 
