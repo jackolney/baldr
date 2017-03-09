@@ -4,10 +4,6 @@
 #'
 #' @export
 sir_model_odin <- function() {
-    # Check for packages
-    if (!require("odin")) devtools::install_github("richfitz/odin")
-    if (!require("reshape2")) install.packages("reshape2")
-
     # setup model
     gen <- odin::odin({
         # Derivatives

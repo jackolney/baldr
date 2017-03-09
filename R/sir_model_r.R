@@ -4,9 +4,7 @@
 #'
 #' @export
 sir_model_r <- function() {
-    # Check for packages
-    if (!require("deSolve")) install.packages("deSolve")
-
+    # define model function
     model <- function(t, y, parms) {
 
         # Derivatives

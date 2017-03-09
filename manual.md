@@ -93,6 +93,8 @@ delta = 0.2
 
 ### Odin
 
+The function `modelr::sir_model_odin()` will run the following model:
+
 ```R
 # Check for packages
 if (!require("odin")) devtools::install_github("richfitz/odin")
@@ -137,10 +139,13 @@ out
 
 ### R
 
+The function `modelr::sir_model_r()` will run the following model:
+
 ```R
 # Check for packages
 if (!require("deSolve")) install.packages("deSolve")
 
+# define model function
 model <- function(t, y, parms) {
 
     # Derivatives
