@@ -58,13 +58,13 @@ Expression           | Berkeley Madonna | Odin               | R
 -------------------- | ---------------- | ------------------ | -----------------------------------
 Derivative of 'S'    | `d/dt(S)`        | `deriv(S)`         | `dS`
 Initial value of 'S' | `init S`         | `initial(S)`       | `deSolve::ode(y = initial)`
-Parameter 'mu'       | `mu = 1/75`      | `mu <- user(1/75)` | `deSolve::ode(parms = c(mu = 1/75)`
+Parameter 'mu'       | `mu = 1/75`      | `mu <- user(1/75)` | `deSolve::ode(parms = c(mu = 1/75))`
 
 The code snippets below detail an [SIR](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model) model written in all three syntaxes. These pieces of code form entire programs, and can be copied into the relevant application to generate results. The purpose being to help users understand how the concepts translate across the three languages. For simplicity I have written exactly the same model in each language.
 
 ### Berkeley Madonna
 
-```shell
+```css
 {Model Setup}
 METHOD RK4 ;integration method
 STARTTIME = 0 ;model start time
@@ -72,9 +72,9 @@ STOPTIME = 100 ;model stop time
 DT = 0.1 ;time step
 
 {Derivatives}
-d/dt(S) <- Births - mu * S - beta * S * I / N + delta * R
-d/dt(I) <- beta * S * I / N - (mu + sigma) * I
-d/dt(R) <- sigma * I - mu * R - delta * R
+d/dt(S) = Births - mu * S - beta * S * I / N + delta * R
+d/dt(I) = beta * S * I / N - (mu + sigma) * I
+d/dt(R) = sigma * I - mu * R - delta * R
 
 {Initial conditions}
 init S = 1e7 - 1
