@@ -83,7 +83,7 @@ init R = 0
 
 {Parameters}
 Births = 1e7 / 72
-mu = 1 / 72
+mu = 0.0139
 beta = 24
 sigma = 12
 delta = 0.2
@@ -112,7 +112,7 @@ gen <- odin::odin({
 
     # Parameters
     Births <- 1e7 / 72
-    mu <- user(1 / 7)
+    mu <- user(0.0139)
     beta <- user(24)
     sigma <- user(12)
     delta <- user(0.2)
@@ -131,9 +131,8 @@ tt <- seq(from = 0, to = 100, by = 0.1)
 y <- model$run(tt)
 
 # assemble output
-out <- reshape2::melt(data = as.data.frame(y), id.vars = "t")
+out <- as.data.frame(y)
 out
-
 ```
 
 ### R
@@ -145,8 +144,8 @@ if (!require("deSolve")) install.packages("deSolve")
 model <- function(t, y, parms) {
 
     # Derivatives
-    dS <- y[["Births"]] - parms[["mu"]] * y[["S"]] - parms[["beta"]] * y[["S"]] * y[["I"]] / y[["N"]] + parms[["delta"]] * y[["R"]]
-    dI <- parms[["beta"]] * y[["S"]] * y[["I"]] / y[["N"]] - (parms[["mu"]] + parms[["sigma"]]) * y[["I"]]
+    dS <- parms[["Births"]] - parms[["mu"]] * y[["S"]] - parms[["beta"]] * y[["S"]] * y[["I"]] / parms[["N"]] + parms[["delta"]] * y[["R"]]
+    dI <- parms[["beta"]] * y[["S"]] * y[["I"]] / parms[["N"]] - (parms[["mu"]] + parms[["sigma"]]) * y[["I"]]
     dR <- parms[["sigma"]] * y[["I"]] - parms[["mu"]] * y[["R"]] - parms[["delta"]] * y[["R"]]
 
     # reconstruct output
@@ -163,8 +162,9 @@ initial <- c(
 
 # Parameters
 parameters <- c(
+    N = 1e7,
     Births = 1e7 / 72,
-    mu = 1 / 72,
+    mu = 0.0139,
     beta = 24,
     sigma = 12,
     delta = 0.2
@@ -175,7 +175,6 @@ tt <- seq(from = 0, to = 100, by = 0.1)
 
 out <- deSolve::ode(times = tt, y = initial, func = model, parms = parameters)
 out
-
 ```
 
 ## Tools
