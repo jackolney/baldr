@@ -30,7 +30,7 @@ output$plot <- renderHighchart({
             resetZoomButton = list(position = list(align = "right", x = -40))) %>%
         hc_xAxis(title = list(text = "time"),
             labels = list(style = list(fontSize = "12px"))) %>%
-        hc_yAxis(title = list(text = "value"),
+        hc_yAxis(title = list(text = "value"), maxPadding = 0.05, endOnTick = FALSE,
             labels = list(style = list(fontSize = "12px"))) %>%
         hc_legend(itemStyle = list(fontSize = "15px")) %>%
         hc_add_theme(hc_theme_modelr)
@@ -51,7 +51,8 @@ hc_theme_modelr <- hc_theme(
         color = "#3C3C3C")), lineColor = "#D7D7D8", minorGridLineColor = "#505053",
         tickColor = "#D7D7D8", tickWidth = 1, title = list(style = list(color = "#A0A0A3"))),
     labels = list(style = list(color = "#D7D7D8")),
-    plotOptions = list(line = list(marker = list(enabled = FALSE),
+    plotOptions = list(
+        line = list(marker = list(enabled = FALSE),
         states = list(hover = list(lineWidthPlus = 1))),
         spline = list(marker = list(enabled = FALSE), states = list(hover = list(lineWidthPlus = 1))),
         area = list(marker = list(enabled = FALSE), states = list(hover = list(lineWidthPlus = 1))),
