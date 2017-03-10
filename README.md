@@ -1,8 +1,7 @@
 # modelr
 Epidemiological modelling in R
 
-[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable,
-usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![Travis-CI Build Status](https://travis-ci.org/jackolney/modelr.svg?branch=master)](https://travis-ci.org/jackolney/modelr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jackolney/modelr?branch=master&svg=true)](https://ci.appveyor.com/project/jackolney/modelr)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/jackolney/modelr.svg?branch=master)](https://travis-ci.org/jackolney/modelr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/jackolney/modelr?branch=master&svg=true)](https://ci.appveyor.com/project/jackolney/modelr)
 
 The purpose of this package is a base for the development of an open-source framework for running [ODE](https://en.wikipedia.org/wiki/Ordinary_differential_equation)-based mathematical models of infectious diseases in [R](https://www.r-project.org/).
 
