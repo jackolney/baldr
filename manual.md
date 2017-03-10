@@ -82,6 +82,7 @@ init I = 1
 init R = 0
 
 {Parameters}
+N = 1e7
 Births = 1e7 / 72
 mu = 0.0139
 beta = 24
@@ -113,6 +114,7 @@ gen <- odin::odin({
     initial(R) <- 0
 
     # Parameters
+    N <- 1e7
     Births <- 1e7 / 72
     mu <- user(0.0139)
     beta <- user(24)
