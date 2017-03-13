@@ -13,6 +13,7 @@ Imports:
     devtools,
     DT,
     odin,
+    RColorBrewer,
     reshape2,
     shiny,
     shinyBS,

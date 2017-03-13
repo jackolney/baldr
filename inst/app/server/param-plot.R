@@ -113,8 +113,9 @@ output$param_plot <- renderHighchart({
         # determine number of colors to include in figure
         cols <- length(unique(out$variable))
 
-        # define colorGradient
-        colors = c("#FF2700", "#008FD5", "#77AB43", "#636464", "#C4C4C4")
+        # define colorGradient (colors from hc_theme)
+        # colors = c("#FF2700", "#008FD5", "#77AB43", "#636464", "#C4C4C4")
+        colors <- RColorBrewer::brewer.pal(11, "Spectral")
         colfunc <- colorRampPalette(colors)
 
         # highcharter
