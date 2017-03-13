@@ -60,9 +60,13 @@ After a model has been entered in the 'Plot' tab, users can click the 'Parameter
 
 ![pplot-setup](https://cloud.githubusercontent.com/assets/4134882/23863713/536c8328-0808-11e7-86c4-10028aa1da7b.jpg)
 
-After the parameter to sweep has been selected, the output variable i.e. the derivative must be selected. Then users are able to specify whether they want to plot the parameter against the output or view the output over time for each simulation. Clicking 'Run Parameter Plot' will run the relevant simulations and generate the results plot on the right-hand side of the page. As before the hamburger icon allows the ability to view the data-table and download the plot.
+After the parameter to sweep has been selected, the output variable i.e. the derivative must be selected. Then users are able to specify whether they want to plot the parameter against the output or view the output over time for each simulation by checking the 'Parameter vs. Output' checkbox. Clicking 'Run Parameter Plot' will run the relevant simulations and generate the results plot on the right-hand side of the page. As before the hamburger icon allows the ability to view the data-table and download the plot. Below we see the parameter plot showing each output plotted over time:
 
 ![param-plot](https://cloud.githubusercontent.com/assets/4134882/23854058/89118bb6-07e7-11e7-9343-189edccffab4.jpg)
+
+And then with the 'Parameter vs. Output' checkbox ticked, the tool plots the parameter along the x-axis and the output at the stop-time on the y-axis:
+
+![param-plot-alt](https://cloud.githubusercontent.com/assets/4134882/23863712/5369ff2c-0808-11e7-89f7-98bbd462832e.jpg)
 
 ### More
 
