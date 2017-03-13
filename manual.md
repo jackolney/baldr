@@ -50,7 +50,7 @@ Finally, clicking the 'table' tab at the top of the screen produces an interacti
 
 ## Syntax
 
-When entering a model into `modelr` please follow the syntax specified by the [`odin`](https://github.com/richfitz/odin) package written by [Rich FitzJohn](https://richfitz.github.io/). Rich has put together a very detailed [**vignette**](https://richfitz.github.io/odin/vignettes/odin.html) on how to use odin.
+When entering a model into `modelr` please follow the syntax specified by the [`odin`](https://github.com/richfitz/odin) package written by [Rich FitzJohn](https://richfitz.github.io/). Rich has put together a very detailed [vignette](https://richfitz.github.io/odin/vignettes/odin.html) on how to use odin.
 
 Below is a brief table comparing expressions in the three languages:
 
