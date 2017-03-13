@@ -58,9 +58,9 @@ The ability to perform a parameter plot or parameter sweep allows users to inves
 
 After a model has been entered in the 'Plot' tab, users can click the 'Parameter Plot' tab where they can specify the details of the plot. Users must select a parameter to sweep over from the drop-down list, and also a range and step size. By default these values are populated by taking the value of the parameter from the previous tab, doubling it and then dividing the range into five equal jumps starting at zero.
 
-![pplot-setup](https://cloud.githubusercontent.com/assets/4134882/23854059/89222f02-07e7-11e7-90ff-dbe7252227c6.jpg)
+![pplot-setup](https://cloud.githubusercontent.com/assets/4134882/23863713/536c8328-0808-11e7-86c4-10028aa1da7b.jpg)
 
-After the parameter to sweep has been selected, the output variable i.e. the derivative must be selected. This output is what will be plotted on the page. Clicking 'Run Parameter Plot' will run the relevant simulations and generate the results plot on the right-hand side of the page. As before the hamburger icon allows the ability to view the data-table and download the plot.
+After the parameter to sweep has been selected, the output variable i.e. the derivative must be selected. Then users are able to specify whether they want to plot the parameter against the output or view the output over time for each simulation. Clicking 'Run Parameter Plot' will run the relevant simulations and generate the results plot on the right-hand side of the page. As before the hamburger icon allows the ability to view the data-table and download the plot.
 
 ![param-plot](https://cloud.githubusercontent.com/assets/4134882/23854058/89118bb6-07e7-11e7-9343-189edccffab4.jpg)
 
@@ -74,11 +74,11 @@ When entering a model into `modelr` please follow the syntax specified by the [`
 
 Below is a brief table comparing expressions in the three languages:
 
-Expression           | Berkeley Madonna | Odin               | R
--------------------- | ---------------- | ------------------ | -----------------------------------
-Derivative of 'S'    | `d/dt(S)`        | `deriv(S)`         | `dS`
-Initial value of 'S' | `init S`         | `initial(S)`       | `deSolve::ode(y = initial)`
-Parameter 'mu'       | `mu = 1/75`      | `mu <- user(1/75)` | `deSolve::ode(parms = c(mu = 1/75))`
+Expression           | Berkeley Madonna | Odin                | R
+-------------------- | ---------------- | ------------------- | -----------------------------------
+Derivative of 'S'    | `d/dt(S)`        | `deriv(S)`          | `dS`
+Initial value of 'S' | `init S = 100`   | `initial(S) <- 100` | `deSolve::ode(y = c(S = 100))`
+Parameter 'mu'       | `mu = 1/75`      | `mu <- user(1/75)`  | `deSolve::ode(parms = c(mu = 1/75))`
 
 The code snippets below detail an [SIR](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model) model written in all three syntaxes. These pieces of code form entire programs, and can be copied into the relevant application to generate results. The purpose being to help users understand how the concepts translate across the three languages. For simplicity I have written exactly the same model in each language.
 
