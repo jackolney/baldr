@@ -12,6 +12,8 @@ tabPanel("Parameter Plot",
                 ),
                 wellPanel(
                     h5("Output Selection"),
+                    checkboxInput(inputId = "check_param_output",
+                        label = "Parameter vs. Output", value = FALSE),
                     uiOutput(outputId = "ui_param_plot_out_selection", inline = FALSE),
                     bsButton(inputId = "run_param_plot", label = "Run Parameter Plot",
                         icon = icon ("play", class = "fa-lg fa-fw", lib = "font-awesome"),

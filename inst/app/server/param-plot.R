@@ -86,18 +86,34 @@ run_parameter_plot <- function(model) {
         # run the model
         y <- model$run(tt)
 
-        # use input$selected_param_out to select the desired output to keep
-        pplot_out[[paste0("out_", i)]] <- y[,input$selected_param_out]
+        # check if we should be plotting parameter vs. output
+        if (input$check_param_output) {
+            # convert to data.frame
+            out.df <- as.data.frame(y)
+            # take output at end of simulation
+            pplot_out[[i]] <- out.df[out.df$t == input$time_to, input$selected_param_out]
+        } else {
+            # use input$selected_param_out to select the desired output to keep
+            pplot_out[[paste0("out_", i)]] <- y[,input$selected_param_out]
+        }
     }
 
-    # convert to data.frame
-    out <- as.data.frame(pplot_out)
-
-    # add time column
-    out$t <- seq(from = input$time_from, to = input$time_to, by = input$time_by)
-
-    # melt around time (t)
-    theOut <- reshape2::melt(out, id.vars = "t")
+    # if plotting parameter vs. output
+    if (input$check_param_output) {
+        # convert to data.frame
+        theOut <- as.data.frame(unlist(pplot_out))
+        # add time column
+        theOut$t <- pplot_seq
+        # rename data.frame columns (output / parameter)
+        names(theOut) <- c(input$selected_param_out, input$selected_param_plot)
+    } else {
+        # convert to data.frame
+        out <- as.data.frame(pplot_out)
+        # add time column
+        out$t <- seq(from = input$time_from, to = input$time_to, by = input$time_by)
+        # melt around time (t)
+        theOut <- reshape2::melt(out, id.vars = "t")
+    }
     theOut
 }
 
@@ -110,28 +126,67 @@ output$param_plot <- renderHighchart({
         # run parameter plot function
         out <- isolate(run_parameter_plot(model = mod))
 
-        # determine number of colors to include in figure
-        cols <- length(unique(out$variable))
-
-        # define colorGradient (colors from hc_theme)
-        # colors = c("#FF2700", "#008FD5", "#77AB43", "#636464", "#C4C4C4")
-        colors <- RColorBrewer::brewer.pal(11, "Spectral")
-        colfunc <- colorRampPalette(colors)
-
-        # highcharter
-        # hchart(object = cars, type = "scatter", hcaes(x = speed, y = dist))
-        hchart(object = out, type = "line", hcaes(x = t, y = value, group = variable)) %>%
-            hc_tooltip(crosshairs = TRUE, shared = TRUE, borderWidth = 1.5, valueDecimals = 2,
-                style = list(fontSize = "12px")) %>%
-            hc_exporting(enabled = TRUE, filename = "modelr-output",
-                buttons = list(contextButton = list(align = "right", x = -10, y = 1))) %>%
-            hc_chart(zoomType = "x",
-                resetZoomButton = list(position = list(align = "right", x = -40))) %>%
-            hc_xAxis(title = list(text = "time"),
-                labels = list(style = list(fontSize = "12px"))) %>%
-            hc_yAxis(title = list(text = "value"), maxPadding = 0.05, endOnTick = FALSE,
-                labels = list(style = list(fontSize = "12px"))) %>%
-            hc_legend(itemStyle = list(fontSize = "15px")) %>%
-            hc_add_theme(hc_theme_modelr(colors = colfunc(cols)))
+        # if plotting parameter vs. output
+        if (input$check_param_output) {
+            # highcharter (using hcaes_string)
+            hchart(object = out, type = "line",
+                hcaes_string(
+                    x = isolate(input$selected_param_plot),
+                    y = isolate(input$selected_param_out))) %>%
+                hc_tooltip(crosshairs = TRUE, shared = TRUE, borderWidth = 1.5, valueDecimals = 2,
+                    style = list(fontSize = "12px")) %>%
+                hc_exporting(enabled = TRUE, filename = "modelr-output",
+                    buttons = list(contextButton = list(align = "right", x = -10, y = 1))) %>%
+                hc_chart(zoomType = "x",
+                    resetZoomButton = list(position = list(align = "right", x = -40))) %>%
+                hc_xAxis(title = list(text = isolate(input$selected_param_plot)),
+                    labels = list(style = list(fontSize = "12px"))) %>%
+                hc_yAxis(title = list(text = isolate(input$selected_param_out)),
+                    maxPadding = 0.05, endOnTick = FALSE,
+                    labels = list(style = list(fontSize = "12px"))) %>%
+                hc_legend(itemStyle = list(fontSize = "15px")) %>%
+                hc_add_theme(hc_theme_modelr())
+        } else {
+            # determine number of colors to include in figure
+            cols <- length(unique(out$variable))
+            # define colorGradient (colors from hc_theme)
+            # colors = c("#FF2700", "#008FD5", "#77AB43", "#636464", "#C4C4C4")
+            colors <- RColorBrewer::brewer.pal(11, "Spectral")
+            colfunc <- colorRampPalette(colors)
+            # highcharter
+            hchart(object = out, type = "line", hcaes(x = t, y = value, group = variable)) %>%
+                hc_tooltip(crosshairs = TRUE, shared = TRUE, borderWidth = 1.5, valueDecimals = 2,
+                    style = list(fontSize = "12px")) %>%
+                hc_exporting(enabled = TRUE, filename = "modelr-output",
+                    buttons = list(contextButton = list(align = "right", x = -10, y = 1))) %>%
+                hc_chart(zoomType = "x",
+                    resetZoomButton = list(position = list(align = "right", x = -40))) %>%
+                hc_xAxis(title = list(text = "time"),
+                    labels = list(style = list(fontSize = "12px"))) %>%
+                hc_yAxis(title = list(text = "value"), maxPadding = 0.05, endOnTick = FALSE,
+                    labels = list(style = list(fontSize = "12px"))) %>%
+                hc_legend(itemStyle = list(fontSize = "15px")) %>%
+                hc_add_theme(hc_theme_modelr(colors = colfunc(cols)))
+        }
     }
 })
+
+# hcaes_string() similar to ggplot2::aes_string() but for highcharter
+hcaes_string <- function(x, y, ...) {
+    mapping <- list(...)
+    if (!missing(x))
+        mapping["x"] <- list(x)
+    if (!missing(y))
+        mapping["y"] <- list(y)
+    mapping <- lapply(mapping, function(x) {
+        if (is.character(x)) {
+            parse(text = x)[[1]]
+        } else {
+            x
+        }
+    })
+    mapping <- structure(mapping, class = "uneval")
+    mapping <- mapping[names(mapping) != ""]
+    class(mapping) <- c("hcaes", class(mapping))
+    mapping
+}
