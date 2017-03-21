@@ -23,9 +23,6 @@ check_parameters <- function(model) {
     # empty changes vector
     changes <- vector()
 
-    # list all parameters
-    vals$params
-
     # which sliders are active?
     params <- vals$params[vals$params %in% input$selected_parameters]
 
@@ -44,7 +41,6 @@ check_parameters <- function(model) {
             }
         }
     }
-
     changes
 }
 
