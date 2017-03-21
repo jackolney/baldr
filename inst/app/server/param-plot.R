@@ -39,12 +39,52 @@ output$ui_param_plot_settings <- renderUI({
     tagList(param_plot_settings)
 })
 
+# function to get latest set of parameters (reads vals$contents and checks for live sliders)
+get_parameters <- function() {
+
+    # baseline values from reactiveVector vals
+    base <- vals$contents
+
+    # empty changes vector
+    changes <- vector()
+
+    # which sliders are active?
+    params <- vals$params[vals$params %in% input$selected_parameters]
+
+    # now we need to loop through them and add to our changes vector
+    for (i in 1:length(params)) {
+        # assign parameter name
+        param_name <- paste0("param_", params[i])
+        # compare against model$contents(), if different, then assign change
+        if (!is.null(input[[param_name]])) {
+            if (input[[param_name]] != base[[params[i]]]) {
+                changes <- c(changes, input[[param_name]])
+                if (is.null(names(changes)))
+                    names(changes) <- params[i]
+                else
+                    names(changes)[which(names(changes) == "")] <- params[i]
+            }
+        }
+    }
+
+    # now loop over changes, and assign to base, return base
+    if (length(changes) != 0) {
+        for (i in 1:length(changes)) {
+            base[[names(changes)[i]]] <- changes[[i]]
+        }
+    }
+    base
+}
+
 # observeEvent on input$selected_param_plot
 observeEvent(input$selected_param_plot, {
+    # get latest model parameters
+    params <- get_parameters()
+    # update inputs
     updateNumericInput(session, inputId = "param_to",
-        value = vals$contents[[input$selected_param_plot]] * 2)
+        value = params[[input$selected_param_plot]] * 2)
     updateNumericInput(session, inputId = "param_by",
-        value = vals$contents[[input$selected_param_plot]] * 0.4)
+        value = params[[input$selected_param_plot]] * 0.4)
 })
 
 # draft definition for parameter plot function
