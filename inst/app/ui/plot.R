@@ -1,5 +1,6 @@
 tabPanel("Plot",
     fluidPage(
+        includeCSS("style.css"),
         useShinyjs(),
         fluidRow(
             # LHS Column
@@ -36,6 +37,21 @@ tabPanel("Plot",
                     value = paste(readLines("user-model.R"), collapse = "\n")),
                 wellPanel(
                     h5("Settings"),
+                    fluidRow(
+                        column(width = 6,
+                            HTML('
+                                <label for="upload" class="btn action-button btn-sm btn-block">
+                                    <i class="fa fa-upload"></i> Load Model
+                                </label>
+                                <input id="upload" type="file"/>
+                            ')
+                        ),
+                        column(width = 6,
+                            downloadButton(outputId = 'download', label = 'Save Model',
+                                class = "btn btn-sm btn-primary btn-block")
+                        )
+                    ),
+                    p(""),
                     uiOutput(outputId = "ui_initial", inline = FALSE),
                     uiOutput(outputId = "ui_params",  inline = FALSE)
                 )

@@ -1,4 +1,5 @@
 source("server/dynamic.R",    local = TRUE)
+source("server/io.R",         local = TRUE)
 source("server/model.R",      local = TRUE)
 source("server/more.R",       local = TRUE)
 source("server/param-plot.R", local = TRUE)

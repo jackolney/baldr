@@ -1,0 +1,4 @@
+/* File Upload */
+input[type="file"] {
+    display: none;
+}
