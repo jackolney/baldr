@@ -12,7 +12,7 @@ See the [README](https://jackolney.github.io/modelr/) for details on installatio
 
 The interface to `modelr` was designed to require minimal explanation and just get out of the way so that code can be entered and simulations computed. However, I will detail each aspect of the tool below, starting with the landing page that you will see upon starting the tool:
 
-![landing-page](https://cloud.githubusercontent.com/assets/4134882/23662523/cd13c33c-0347-11e7-9a36-67454bba2f0c.png)
+![landing-page](https://cloud.githubusercontent.com/assets/4134882/24242340/5cbc9568-0faf-11e7-9140-f60721dc6dcc.png)
 
 ### Plot
 
@@ -24,9 +24,9 @@ Below these controls we find the text editor section of the tool, where users ca
 
 ![code](https://cloud.githubusercontent.com/assets/4134882/23713116/cd5aa36c-041c-11e7-9f61-34736457c580.jpg)
 
-Below the code entry section of the tool is the model settings pane. This is automatically populated with the state variable and parameter names from any model entered. Clicking the checkbox on a state variable will add it to the plot on the screen. Clicking the checkbox by a parameter will bring up an interactive slider for that parameter just below the plot.
+Below the code entry section of the tool is the model settings pane. To load a model written in a `.txt` or `.R` file, click the "Load Model" button, select the file and the editor will automatically update. To save any model entered into the editor click "Save Model" and a `.R` file will download automatically. The settings pane is automatically populated with the state variable and parameter names from any model entered. Clicking the checkbox on a state variable will add it to the plot on the screen. Clicking the checkbox by a parameter will bring up an interactive slider for that parameter just below the plot.
 
-![settings](https://cloud.githubusercontent.com/assets/4134882/23713113/cd58d712-041c-11e7-8121-1409e8e192ca.jpg)
+![settings](https://cloud.githubusercontent.com/assets/4134882/24242339/5cbc1002-0faf-11e7-8477-8b06d22b4b4d.png)
 
 Sliders are a really useful tool for understanding the sensitivity of the model to variations in a particular parameter. By default the slider takes the value entered by the user as its middle setting, the maximum bound is twice that baseline value and the minimum is zero. However, users can adjust those upper and lower bounds by entering the desired values in the boxes provided and the slider will automatically be re-drawn. Hitting the rest button by a slider will reset the upper and lower bounds as well as the value the slider is set to. The global reset button (top left of the screen) does this for all parameters.
 
