@@ -2,11 +2,10 @@
 % Please edit documentation in R/sir_model_odin.R
 \name{sir_model_odin}
 \alias{sir_model_odin}
-\title{run modelr example SIR model in odin}
+\title{run baldr example SIR model in odin}
 \usage{
 sir_model_odin()
 }
 \description{
 run SIR model in odin
 }
-

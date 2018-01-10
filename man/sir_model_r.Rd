@@ -2,11 +2,10 @@
 % Please edit documentation in R/sir_model_r.R
 \name{sir_model_r}
 \alias{sir_model_r}
-\title{run modelr example SIR model in R}
+\title{run baldr example SIR model in R}
 \usage{
 sir_model_r()
 }
 \description{
 run SIR model in native R
 }
-

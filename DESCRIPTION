@@ -1,4 +1,4 @@
-Package: modelr
+Package: baldr
 Title: Interactive ODE solver and framework to facilitate the transition from
     Berkeley Madonna to R
 Version: 1.0
@@ -24,5 +24,5 @@ Remotes:
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Suggests: testthat

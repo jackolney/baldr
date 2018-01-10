@@ -24,7 +24,7 @@ output$plot <- renderHighchart({
     hchart(object = out, type = "line", hcaes(x = t, y = value, group = variable)) %>%
         hc_tooltip(crosshairs = TRUE, shared = TRUE, borderWidth = 1.5, valueDecimals = 2,
             style = list(fontSize = "12px")) %>%
-        hc_exporting(enabled = TRUE, filename = "modelr-output",
+        hc_exporting(enabled = TRUE, filename = "baldr-output",
             buttons = list(contextButton = list(align = "right", x = -10, y = 1))) %>%
         hc_chart(zoomType = "x",
             resetZoomButton = list(position = list(align = "right", x = -40))) %>%
@@ -33,11 +33,11 @@ output$plot <- renderHighchart({
         hc_yAxis(title = list(text = "value"), maxPadding = 0.05, endOnTick = FALSE,
             labels = list(style = list(fontSize = "12px"))) %>%
         hc_legend(itemStyle = list(fontSize = "15px")) %>%
-        hc_add_theme(hc_theme_modelr())
+        hc_add_theme(hc_theme_baldr())
 })
 
 # custom highcharter theme (modified from hc_theme_smpl, with colors from hc_theme_538)
-hc_theme_modelr <- function(...) {
+hc_theme_baldr <- function(...) {
     theme <- list(
         colors = c("#FF2700", "#008FD5", "#77AB43", "#636464", "#C4C4C4"),
         chart = list(style = list(fontFamily = "Roboto")),

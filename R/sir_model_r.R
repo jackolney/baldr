@@ -1,6 +1,6 @@
 #' run SIR model in native R
 #'
-#' @title run modelr example SIR model in R
+#' @title run baldr example SIR model in R
 #'
 #' @export
 sir_model_r <- function() {

@@ -1,6 +1,6 @@
 library(testthat)
-library(modelr)
+library(baldr)
 library(odin)
 library(deSolve)
 
-test_check("modelr")
+test_check("baldr")
