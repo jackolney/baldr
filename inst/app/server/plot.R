@@ -53,6 +53,7 @@ hc_theme_modelr <- function(...) {
             tickColor = "#D7D7D8", tickWidth = 1, title = list(style = list(color = "#A0A0A3"))),
         labels = list(style = list(color = "#D7D7D8")),
         plotOptions = list(
+            series = list(animation = FALSE),
             line = list(marker = list(enabled = FALSE),
             states = list(hover = list(lineWidthPlus = 1))),
             spline = list(marker = list(enabled = FALSE), states = list(hover = list(lineWidthPlus = 1))),
