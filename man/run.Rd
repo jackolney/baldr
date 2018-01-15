@@ -2,11 +2,10 @@
 % Please edit documentation in R/run.R
 \name{run}
 \alias{run}
-\title{run modelr interactive ODE solver}
+\title{run baldr interactive ODE solver}
 \usage{
 run()
 }
 \description{
-run modelr
+run baldr
 }
-

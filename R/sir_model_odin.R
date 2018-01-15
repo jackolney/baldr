@@ -1,6 +1,6 @@
 #' run SIR model in odin
 #'
-#' @title run modelr example SIR model in odin
+#' @title run baldr example SIR model in odin
 #'
 #' @export
 sir_model_odin <- function() {

@@ -1,26 +1,26 @@
 # manual :books:
 
-This is a walkthrough and manual for the use of the `modelr` package for epidemiological modelling in R
+This is a walkthrough and manual for the use of the `baldr` package for epidemiological modelling in R
 
 ## Introduction
 
 This package is designed to ease the transition of students from [Berkeley Madonna](https://www.berkeleymadonna.com/), in which they were introduced to solving [Ordinary Differential Equations](https://en.wikipedia.org/wiki/Ordinary_differential_equation) (ODE's), to the statistical computing language, [R](https://www.r-project.org/).
 
-See the [README](https://jackolney.github.io/modelr/) for details on installation and launching a hosted version of the package.
+See the [README](https://jackolney.github.io/baldr/) for details on installation and launching a hosted version of the package.
 
 ## Interface
 
-The interface to `modelr` was designed to require minimal explanation and just get out of the way so that code can be entered and simulations computed. However, I will detail each aspect of the tool below, starting with the landing page that you will see upon starting the tool:
+The interface to `baldr` was designed to require minimal explanation and just get out of the way so that code can be entered and simulations computed. However, I will detail each aspect of the tool below, starting with the landing page that you will see upon starting the tool:
 
 ![landing-page](https://cloud.githubusercontent.com/assets/4134882/24242340/5cbc9568-0faf-11e7-9140-f60721dc6dcc.png)
 
 ### Plot
 
-The most important controls are 'RUN' and 'RESET'. To start, the tool will compile and run any model that exists in the text input area. At the moment a simple [SIR](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model) model exists in here that is explained in detail in the [syntax section](https://jackolney.github.io/modelr/manual#syntax). Clicking the 'RUN' button will compile any available code, run the model and render an output figure to the screen. 'RESET' will reset all parameter values and settings back to the defaults (refreshing the page will produce a similar effect). The 'start time' of the simulation defines the start of the x-axis, the 'stop time', the end of the x-axis and the 'time step', the resolution of the lines to be drawn -- the integration time-step.
+The most important controls are 'RUN' and 'RESET'. To start, the tool will compile and run any model that exists in the text input area. At the moment a simple [SIR](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model) model exists in here that is explained in detail in the [syntax section](https://jackolney.github.io/baldr/manual#syntax). Clicking the 'RUN' button will compile any available code, run the model and render an output figure to the screen. 'RESET' will reset all parameter values and settings back to the defaults (refreshing the page will produce a similar effect). The 'start time' of the simulation defines the start of the x-axis, the 'stop time', the end of the x-axis and the 'time step', the resolution of the lines to be drawn -- the integration time-step.
 
 ![start-stop](https://cloud.githubusercontent.com/assets/4134882/23713119/cd771d30-041c-11e7-885b-9b0d417d1889.jpg)
 
-Below these controls we find the text editor section of the tool, where users can write code, or copy a model from elsewhere using the [_odin syntax_](https://richfitz.github.io/odin/vignettes/odin.html) written by [Rich FitzJohn](https://richfitz.github.io/). Please see the [syntax section](https://jackolney.github.io/modelr/manual#syntax) for further details on how to convert your model from Berkeley Madonna into Odin or native R.
+Below these controls we find the text editor section of the tool, where users can write code, or copy a model from elsewhere using the [_odin syntax_](https://richfitz.github.io/odin/vignettes/odin.html) written by [Rich FitzJohn](https://richfitz.github.io/). Please see the [syntax section](https://jackolney.github.io/baldr/manual#syntax) for further details on how to convert your model from Berkeley Madonna into Odin or native R.
 
 ![code](https://cloud.githubusercontent.com/assets/4134882/23713116/cd5aa36c-041c-11e7-9f61-34736457c580.jpg)
 
@@ -70,11 +70,11 @@ And then with the 'Parameter vs. Output' checkbox ticked, the tool plots the par
 
 ### More
 
-The final tab, 'More', allows users to view this manual on the modelr website, and the second section is used to produce information on the current R session (this is mainly used for debugging)
+The final tab, 'More', allows users to view this manual on the baldr website, and the second section is used to produce information on the current R session (this is mainly used for debugging)
 
 ## Syntax
 
-When entering a model into `modelr` please follow the syntax specified by the [`odin`](https://github.com/richfitz/odin) package written by [Rich FitzJohn](https://richfitz.github.io/). Rich has put together a very detailed [vignette](https://richfitz.github.io/odin/vignettes/odin.html) on how to use odin.
+When entering a model into `baldr` please follow the syntax specified by the [`odin`](https://github.com/richfitz/odin) package written by [Rich FitzJohn](https://richfitz.github.io/). Rich has put together a very detailed [vignette](https://richfitz.github.io/odin/vignettes/odin.html) on how to use odin.
 
 Below is a brief table comparing expressions in the three languages:
 
@@ -118,7 +118,7 @@ delta = 0.2
 
 ### Odin
 
-The function `modelr::sir_model_odin()` will run the following model:
+The function `baldr::sir_model_odin()` will run the following model:
 
 ```R
 # Check for packages
@@ -165,7 +165,7 @@ out
 
 ### R
 
-The function `modelr::sir_model_r()` will run the following model:
+The function `baldr::sir_model_r()` will run the following model:
 
 ```R
 # Check for packages
@@ -210,7 +210,7 @@ out
 
 ## Tools
 
-By default `modelr` generates a figure illustrating the numerical solution of each ODE between the
+By default `baldr` generates a figure illustrating the numerical solution of each ODE between the
 times set by the user. Clicking the [hamburger icon](https://en.wikipedia.org/wiki/Hamburger_button)
 allows user to save an image of the figure. Additionally, clicking the 'table' tab will generate an
 interactive table of the numerical solutions that can be downloaded as an Excel / CSV / PDF file.
