@@ -11,6 +11,7 @@ Depends:
 Imports:
     deSolve,
     devtools,
+    digest,
     DT,
     odin,
     RColorBrewer,
