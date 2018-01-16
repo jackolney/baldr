@@ -21,7 +21,7 @@ Imports:
     shinyjs,
     shinythemes
 Remotes:
-    richfitz/odin
+    mrc-ide/odin
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
