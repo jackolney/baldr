@@ -16,7 +16,7 @@ baldr::run()
 
 Additionally, a live version of the tool is available here: [jackolney.shinyapps.io/baldr](https://jackolney.shinyapps.io/baldr/)
 
-![screenshot](https://user-images.githubusercontent.com/4134882/35013567-af767fe8-fb05-11e7-8ce4-cac6936d4af5.png)
+![screenshot](https://cloud.githubusercontent.com/assets/4134882/23711620/46b7d37e-0418-11e7-8100-495649ed05e1.jpg)
 
 ## Manual
 
