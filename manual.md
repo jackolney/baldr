@@ -12,7 +12,7 @@ See the [README](https://jackolney.github.io/baldr/) for details on installation
 
 The interface to `baldr` was designed to require minimal explanation and just get out of the way so that code can be entered and simulations computed. However, I will detail each aspect of the tool below, starting with the landing page that you will see upon starting the tool:
 
-![landing-page](https://cloud.githubusercontent.com/assets/4134882/24242340/5cbc9568-0faf-11e7-9140-f60721dc6dcc.png)
+![landing-page](https://user-images.githubusercontent.com/4134882/35013778-5764a3f6-fb06-11e7-975a-0d6613d11981.png)
 
 ### Plot
 
