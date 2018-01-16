@@ -1,7 +1,7 @@
 build_model <- function(code) {
 
     # define the model
-    sir <- modelr::build_odin(code)
+    sir <- baldr::build_odin(code)
 
     # build the model
     model <- sir()
