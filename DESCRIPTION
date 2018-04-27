@@ -17,6 +17,8 @@ Imports:
     RColorBrewer,
     reshape2,
     shiny,
+    shinyAce,
+    highcharter,
     shinyBS,
     shinyjs,
     shinythemes
